@@ -7,13 +7,14 @@ const Home = () => {
     const navigate= useNavigate();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const handleTitleChange = (e :React.ChangeEvent<HTMLInputElement>) => {
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
-
-  const handleContentChange = (e :React.ChangeEvent<HTMLInputElement>) => {
+  
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   };
+  
 
   const handleSubmit = async () => {
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { SignupType } from 'medium-blog-zods';
-import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { ChangeEvent, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { BACKEND_URL } from '../config';
 const Auth = ({type}: {
     type: "signin"| "signup"

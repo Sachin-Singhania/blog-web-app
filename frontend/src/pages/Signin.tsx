@@ -1,4 +1,3 @@
-import React from 'react'
 import Quote from '../Components/Quote'
 import Auth from '../Components/Auth'
     
