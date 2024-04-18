@@ -6,7 +6,6 @@ const Blogid = () => {
   const params= useParams();
   {/* @ts-ignore */}
   const {loading,blog}= useBlog(params.id);
-  console.log(blog);
   return loading ? <div>Loading.....</div>:  (
     <>
     {/* @ts-ignore */}

@@ -21,7 +21,6 @@ const Button=({id,title,content}:{id:string,title:string,content:string})=>{
         },
          {headers:{ Authorization: localStorage.getItem("jwt")} })
             .then(response => {
-                console.log(response);
                 window.location.reload();
             })
             .catch(error => {

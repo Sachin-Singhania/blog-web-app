@@ -3,7 +3,6 @@ import { Avatar } from "./BlogCard"
 
 export const Appbar  = () =>{
     const header = localStorage.getItem("jwt");
-    console.log(header);
     return (
         <>
         <div className="border-b flex justify-between px-10 py-3">

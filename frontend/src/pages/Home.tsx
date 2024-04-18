@@ -22,7 +22,6 @@ const Home = () => {
         title,content},
      {headers:{ Authorization: localStorage.getItem("jwt")} })
         .then(response => {
-            console.log(response);
             navigate(`/blog/${response.data.id}`)
         })
         .catch(error => {

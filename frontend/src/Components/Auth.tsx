@@ -17,11 +17,10 @@ const Auth = ({type}: {
             const {data}= await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup"? "signup":"signin"}` ,
                  inputs
             )
-            console.log(data);
             const jwt= data.token;
             if (jwt!=undefined) {
                 localStorage.setItem("jwt",jwt); 
-                localStorage.setItem("userId",data.id); 
+                localStorage.setItem("userId",data.userId); 
                 navigate("/blogs");
             }
         } catch (error) {
