@@ -36,6 +36,7 @@ const Showblog = ({ blog }: { blog: Blogtypes }) => {
     const userid= localStorage.getItem("userId");
     // console.log(userid);
     const isAuthor= userid === blog.authorId;
+    console.log(isAuthor);
     const [title, setTitle] = useState(blog.title);
     const [content, setContent] = useState(blog.content);
     const [isModified, setIsModified] = useState(false);

@@ -21,7 +21,7 @@ const Auth = ({type}: {
             const jwt= data.token;
             if (jwt!=undefined) {
                 localStorage.setItem("jwt",jwt); 
-                localStorage.setItem("userId",data.userId); 
+                localStorage.setItem("userId",data.id); 
                 navigate("/blogs");
             }
         } catch (error) {
