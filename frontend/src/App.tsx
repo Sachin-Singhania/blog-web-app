@@ -4,14 +4,12 @@ import  Signin  from './pages/Signin'
 import Blogs from './pages/Blogs'
 import Blogid from './pages/Blogid'
 import Home from './pages/Home'
-import { Appbar } from './Components/Appbar'
 
 function App() {
 
   return (
     <>
       <BrowserRouter>
-        <Appbar/>
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Signup />} />
