@@ -34,8 +34,8 @@ const Button=({id,title,content}:{id:string,title:string,content:string})=>{
 const Showblog = ({ blog }: { blog: Blogtypes }) => {
     const userid= localStorage.getItem("userId");
     // console.log(userid);
-    const isAuthor= userid === blog.authorId;
-    console.log(isAuthor);
+    //@ts-ignore
+    const isAuthor= userid === blog.author.id;
     const [title, setTitle] = useState(blog.title);
     const [content, setContent] = useState(blog.content);
     const [isModified, setIsModified] = useState(false);
@@ -63,7 +63,7 @@ const Showblog = ({ blog }: { blog: Blogtypes }) => {
                   className={`bg-transparent border-b border-black outline-none ${!isAuthor ? 'pointer-events-none' : ''}`}
                 />
                 { isModified &&
-             userid === blog.authorId && (
+             isAuthor && (
             <Button id={blog.id} title={title} content={content} />
                       )
 }

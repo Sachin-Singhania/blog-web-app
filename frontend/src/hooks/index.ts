@@ -23,6 +23,7 @@ export const useBlogs = () => {
 
         axios.get(`${BACKEND_URL}/api/v1/blog/bulk/all`, { headers })
             .then(response => {
+                // console.log(response.data)
                 setBlogs(response.data.blogs); 
                 setLoading(false);
             })

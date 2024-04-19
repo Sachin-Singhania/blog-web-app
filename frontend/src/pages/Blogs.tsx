@@ -12,7 +12,7 @@ const Blogs = () => {
       blogs?.map((blog)=>(
         <BlogCard 
         id={blog.id}
-      authorname={blog.author.name ?  blog.author.name : 'Anonymous'}
+      authorname={blog.author.name?  blog.author.name : 'Anonymous'}
       content={blog.content} 
       publishedDate={new Date().toLocaleString()}
       title={blog.title} 
