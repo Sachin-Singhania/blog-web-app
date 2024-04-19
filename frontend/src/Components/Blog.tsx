@@ -20,7 +20,7 @@ const Button=({id,title,content}:{id:string,title:string,content:string})=>{
             title,content
         },
          {headers:{ Authorization: localStorage.getItem("jwt")} })
-            .then(response => {
+            .then(() => {
                 window.location.reload();
             })
             .catch(error => {
