@@ -7,7 +7,7 @@ const Blogs = () => {
     <>
 <Appbar/>
     <div className='flex flex-wrap '>
-  <div className="flex-shrink-0 flex-grow justify-center items-center mt-40 ml-96 ">
+  <div className="flex-shrink-0 flex-grow justify-center items-center mt-40 ml-90 ">
     {
       blogs?.map((blog)=>(
         <BlogCard 
