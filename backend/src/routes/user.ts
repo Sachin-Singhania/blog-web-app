@@ -33,7 +33,7 @@ export const userRouter = new Hono<{
         c.env.JWT_SECRET,// secret key
       )
   
-      return c.json({ message: "success", data: user, token });
+      return c.json({ message: 'Successfully signed in!', token, userId: user.id });
     } catch (error) {
       return c.json({
         error
