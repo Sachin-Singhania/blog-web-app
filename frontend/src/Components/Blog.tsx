@@ -3,6 +3,7 @@ import { Blogtypes } from "../hooks"
 import { Avatar } from "./BlogCard"
 import { BACKEND_URL } from "../config"
 import { useState } from "react"
+import {useNavigate } from 'react-router-dom'
 
 export const Blog=({blog}:{blog:Blogtypes})=>{
     return (
@@ -14,6 +15,7 @@ export const Blog=({blog}:{blog:Blogtypes})=>{
     )
 }
 const Button=({id,title,content}:{id:string,title:string,content:string})=>{
+       const navigate= useNavigate();
     const handleSubmit = async () => {
 
         axios.put(`${BACKEND_URL}/api/v1/blog/${id}`,{
@@ -21,7 +23,7 @@ const Button=({id,title,content}:{id:string,title:string,content:string})=>{
         },
          {headers:{ Authorization: localStorage.getItem("jwt")} })
             .then(() => {
-                window.location.reload();
+                navigate(`/blogs`);
             })
             .catch(error => {
                 console.error("Error fetching data:", error);
