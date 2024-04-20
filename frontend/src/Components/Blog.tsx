@@ -23,7 +23,7 @@ const Button=({id,title,content}:{id:string,title:string,content:string})=>{
         },
          {headers:{ Authorization: localStorage.getItem("jwt")} })
             .then(() => {
-                navigate(`/blog/${id}`);
+                navigate(`/blogs`);
             })
             .catch(error => {
                 console.error("Error fetching data:", error);
