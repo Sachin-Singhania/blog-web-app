@@ -54,45 +54,44 @@ const Showblog = ({ blog }: { blog: Blogtypes }) => {
   
     return (
       <div>
-        <div className="flex justify-center">
-          <div className="grid grid-cols-12 px-10 w-full pt-20 max-w-screen-2xl">
-            <div className="col-span-8">
-              <div className="text-5xl font-extrabold">
-                <input
-                  type="text"
-                  value={title}
-                  onChange={handleTitleChange}
-                  className={`bg-transparent border-b border-black outline-none ${!isAuthor ? 'pointer-events-none' : ''}`}
-                />
-                { isModified &&
-             isAuthor && (
-            <Button id={blog.id} title={title} content={content} />
-                      )
-}
-              </div>
-              <div className="pt-4">
-                <textarea
-                  value={content}
-                  onChange={handleContentChange}
-                  className={`w-full h-screen bg-transparent  outline-none ${!isAuthor ? 'pointer-events-none' : ''}`}
-                  placeholder="Start Typing"
-                />
-              </div>
-            </div>
-            <div className="col-span-4">
-              <span className="mx-8 font-thin">Author</span>
-              <div className="flex">
-                <Avatar name={blog.author.name || "Anonymous"} />
-                <div>
-                  <div className="text-xl font-bold">
-                    {blog.author.name ? blog.author.name : "Anonymous"}
-                    <br />
-                  </div>
+      <div className="flex justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 px-10 w-full pt-20 max-w-screen-2xl">
+          {/* Reorder author block for small screens (below 1024px) */}
+          <div className="col-span-1 lg:col-span-4 order-1 lg:order-2">
+            <span className="mx-8 font-thin">Author</span>
+            <div className="flex">
+              <Avatar name={blog.author.name || 'Anonymous'} />
+              <div>
+                <div className="text-xl font-bold">
+                  {blog.author.name ? blog.author.name : 'Anonymous'}
+                  <br />
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Title and content block */}
+          <div className="col-span-1 lg:col-span-8 order-2 lg:order-1">
+            <div className="text-5xl font-extrabold">
+              <input
+                type="text"
+                value={title}
+                onChange={handleTitleChange}
+                className={`bg-transparent border-b border-black outline-none ${!isAuthor ? 'pointer-events-none' : ''}`}
+              />
+              {isModified && isAuthor && <Button id={blog.id} title={title} content={content} />}
+            </div>
+            <div className="pt-4">
+              <textarea
+                value={content}
+                onChange={handleContentChange}
+                className={`w-full h-screen bg-transparent outline-none ${!isAuthor ? 'pointer-events-none' : ''}`}
+                placeholder="Start Typing"
+              />
+            </div>
+          </div>
         </div>
       </div>
+    </div>
     );
   };
