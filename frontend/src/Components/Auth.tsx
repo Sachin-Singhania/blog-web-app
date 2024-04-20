@@ -45,14 +45,14 @@ const Auth = ({type}: {
             </div>
             <div>
              {type === "signup"?
-            <Labelinput label="Name" placeholder='Sachin Singhania' onChange={(e)=>{
+            <Labelinput label="Name" placeholder='xyz' onChange={(e)=>{
                 setinputs({...inputs,name: e.target.value });
             }}  />: null
         }   
-            <Labelinput label="Username" placeholder='Sachin Singhania' onChange={(e)=>{
+            <Labelinput label="Username" placeholder='xyz@gmail.com' onChange={(e)=>{
                 setinputs({...inputs,email: e.target.value });
             }}  />
-            <Labelinput type='password' label="Password" placeholder='123456' onChange={(e)=>{
+            <Labelinput type='password' label="Password" placeholder='minimum 6 letters' onChange={(e)=>{
                 setinputs({...inputs,password: e.target.value });
             }}  />
             <button onClick={sendreq} type="button" className=" mt-5 w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">{type === "signup" ? "Signup":"Signin"}</button>
