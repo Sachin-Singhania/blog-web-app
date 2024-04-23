@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { BACKEND_URL } from '../config';
 import { useNavigate } from 'react-router-dom';
-import { Appbar } from '../Components/Appbar';
 const Home = () => {
     const navigate= useNavigate();
   const [title, setTitle] = useState('');
@@ -33,7 +32,6 @@ const Home = () => {
 
   return (
     <>
-<Appbar/>
     <div className="flex flex-col items-center justify-center h-screen bg-white">
       <h1 className="text-3xl font-bold text-gray-800 mb-8">Tell Your Story</h1>
       <div className="w-full max-w-md bg-gray-100 p-8 rounded-lg">

@@ -12,15 +12,12 @@ const Auth = ({type}: {
         email:"",
         password:""
     });
-
-    // const validateInputs = () => {
-    // }
-
     async function sendreq() {
         try {
             const {data}= await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup"? "signup":"signin"}` ,
                  inputs
             )
+            console.log(data);
             const jwt= data.token;
             const userid= data.userId;
             if (jwt!=undefined) {
