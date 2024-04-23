@@ -24,6 +24,7 @@ export const userRouter = new Hono<{
     try {
       const user = await prisma.user.create({
         data: {
+          name: body.name,
           email: body.email,
           password: body.password,
         }
@@ -33,7 +34,7 @@ export const userRouter = new Hono<{
         c.env.JWT_SECRET,// secret key
       )
   
-      return c.json({ message: 'Successfully signed in!', token, userId: user.id });
+      return c.json({ message: 'Successfully signed in!', token, userId: user.id,user:user });
     } catch (error) {
       return c.json({
         error

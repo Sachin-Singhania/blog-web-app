@@ -12,31 +12,22 @@ const Auth = ({type}: {
         email:"",
         password:""
     });
-const [errors, setErrors] = useState<string[]>([]);
 
-    const validateInputs = () => {
-        const result = SignupType.safeParse(inputs);
-        if (!result.success) {
-            setErrors(result.error.errors.map(err => err.message));
-            return false;
-        }
-        setErrors([]);
-        return true;
-    }
+    // const validateInputs = () => {
+    // }
 
     async function sendreq() {
-        if (!validateInputs()) return;
         try {
             const {data}= await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup"? "signup":"signin"}` ,
                  inputs
             )
-            //navigate("/blogs");
             const jwt= data.token;
+            const userid= data.userId;
             if (jwt!=undefined) {
                 localStorage.setItem("jwt",jwt);            
-                localStorage.setItem("userId",data.userId); 
+                localStorage.setItem("userId",userid); 
+                navigate("/blogs");
             }
-             navigate("/blogs");
         } catch (error) {
             console.log(error);
         }

@@ -17,7 +17,6 @@ bookRouter.use('/*', async (c, next) => {
     const header = c.req.header("Authorization") || "";
     try {
          const payload = await verify(header, c.env.JWT_SECRET);
-         console.log(payload);
         c.set('userId', payload.id);
         await next();    
     } catch (error) {
@@ -30,7 +29,6 @@ bookRouter.use('/*', async (c, next) => {
 
 bookRouter.post('/',async (c) => {
     const authorId = c.get('userId');
-    console.log(authorId);
 	const prisma = new PrismaClient({
 		datasourceUrl: c.env?.DATABASE_URL	,
 	}).$extends(withAccelerate());
@@ -45,11 +43,10 @@ bookRouter.post('/',async (c) => {
              published:true
 		}
 	});
-    console.log(post);
     return c.json({ message: "success", data: post, id: post.id});
 })
 
-bookRouter.put('/',async (c) => {
+bookRouter.put('/:id',async (c) => {
     const userId  = c.get("userId");
     const prisma = new PrismaClient({
         datasourceUrl: c.env?.DATABASE_URL	,
@@ -62,7 +59,7 @@ bookRouter.put('/',async (c) => {
     };
     const post = await prisma.post.update({
          where:{
-            id:body.id,
+            id:c.req.param("id"),
             authorId:userId
         },
          data:{
@@ -81,6 +78,14 @@ bookRouter.put('/',async (c) => {
 	}).$extends(withAccelerate());
     const blog = await prisma.post.findUnique({
         where:{id:id},
+        select:{
+            content:true,
+            title:true,id:true,author:{
+                select:{
+                    id:true,name:true
+                }
+            }
+        }
     }) ;
 
     return c.json({ blog });
@@ -90,7 +95,16 @@ bookRouter.put('/',async (c) => {
       const prisma = new PrismaClient({
           datasourceUrl: c.env?.DATABASE_URL	,
         }).$extends(withAccelerate());
-        const blogs = await prisma.post.findMany({});
+        const blogs = await prisma.post.findMany({
+            select:{
+                content:true,
+                title:true,id:true,author:{
+                    select:{
+                        id:true,name:true
+                    }
+                }
+            }
+        });
     return c.json({ blogs });
   })
   
