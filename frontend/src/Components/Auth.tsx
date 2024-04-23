@@ -12,7 +12,20 @@ const Auth = ({type}: {
         email:"",
         password:""
     });
+const [errors, setErrors] = useState<string[]>([]);
+
+    const validateInputs = () => {
+        const result = SignupType.safeParse(inputs);
+        if (!result.success) {
+            setErrors(result.error.errors.map(err => err.message));
+            return false;
+        }
+        setErrors([]);
+        return true;
+    }
+
     async function sendreq() {
+        if (!validateInputs()) return;
         try {
             const {data}= await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup"? "signup":"signin"}` ,
                  inputs
