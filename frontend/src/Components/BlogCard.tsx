@@ -5,7 +5,6 @@ interface BlogCardType {
     authorname: string ;
     title: string;
     content: string;
-    publishedDate: string;
 }
 
 export const BlogCard = ({
@@ -13,7 +12,6 @@ export const BlogCard = ({
     authorname,
     title,
     content,
-    publishedDate
 }: BlogCardType) => {
     return (
         <Link to={`/blog/${id}`}>
@@ -21,7 +19,6 @@ export const BlogCard = ({
             <div className="flex items-center mb-2">
                 <Avatar name={authorname} />
                 <div className="ml-2 text-sm text-black font-medium">{authorname}</div>
-                <div className="ml-auto text-sm text-black">{publishedDate}</div>
             </div>
             <div className="text-3xl font-bold text-black mb-2">{title}</div>
             <div className="text-sm text-black">{content.slice(0, 50) + "..."}</div>

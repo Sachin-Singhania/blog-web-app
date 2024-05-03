@@ -69,6 +69,16 @@ bookRouter.put('/:id',async (c) => {
     })
     return  c.json({message:'updated' , data:post});
   })
+
+
+// bookRouter.get('/hey',async (c) => {
+//     console.log("hey")
+//     const prisma = new PrismaClient({
+//         datasourceUrl: c.env?.DATABASE_URL	,
+// 	}).$extends(withAccelerate());
+//     const post = await prisma.post.deleteMany({})
+//     return  c.json({message:'Deleted' , data:post});
+//   })
   
   bookRouter.get('/:id',async (c) => {
     const id = c.req.param('id');
