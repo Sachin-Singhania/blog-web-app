@@ -1,30 +1,40 @@
 import { Link } from 'react-router-dom';
-
 interface BlogCardType {
-    id:string,
-    authorname: string ;
+    id: string;
+    authorname: string;
     title: string;
     content: string;
+    category: string;
+    photo?:string;
 }
 
 export const BlogCard = ({
     id,
     authorname,
     title,
-    content,
+    content,category,photo
 }: BlogCardType) => {
     return (
-        <Link to={`/blog/${id}`}>
-        <div className="max-w-screen-lg bg-slate-200 shadow-md  p-4 mb-4 m-10 rounded-lg">
-            <div className="flex items-center mb-2">
-                <Avatar name={authorname} />
-                <div className="ml-2 text-sm text-black font-medium">{authorname}</div>
-            </div>
-            <div className="text-3xl font-bold text-black mb-2">{title}</div>
-            <div className="text-sm text-black">{content.slice(0, 50) + "..."}</div>
-            <div className="text-sm text-black">{Math.ceil(content.length / 100)} minutes</div>
+        <div className='w-80 h-96 rounded-lg overflow-hidden mb-4 shadow-md'>
+            <Link to={`/blog/${id}`}>
+                <div className='border bg-card h-full flex flex-col'>
+                    <div className='w-full h-52'>
+                        <img
+                        src={photo}
+                            alt=""
+                            className='w-full h-full object-cover'
+                        />
+                    </div>
+                    <div className='p-3 flex-grow flex flex-col'>
+                        <div>
+                            <div className='font-extralight'>{authorname.toUpperCase()} | {category?category:"Nope"}</div>
+                        </div>
+                        <div className='text-blue-900 font-bold'>{title}</div>
+                        <div className='font-light flex-grow' dangerouslySetInnerHTML={{ __html: content.slice(0, 100) + "..." }}></div>
+                    </div>
+                </div>
+            </Link>
         </div>
-        </Link>
     );
 };
 
