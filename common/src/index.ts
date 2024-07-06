@@ -3,7 +3,7 @@ import z from "zod";
 export const signupInput = z.object({
     email: z.string().email(),
     password: z.string(),
-    name: z.string().optional(),
+    name: z.string(),
 });
 
 export type SignupType = z.infer<typeof signupInput>;
@@ -18,6 +18,7 @@ export type SigninType = z.infer<typeof signinInput>;
 export const createPostInput = z.object({
     title: z.string(),
     content: z.string(),
+    category:z.string(),
 });
 
 export type CreatePostType = z.infer<typeof createPostInput>;
@@ -25,6 +26,7 @@ export type CreatePostType = z.infer<typeof createPostInput>;
 export const updatePostInput = z.object({
     title: z.string().optional(),
     content: z.string().optional(),
+    category:z.string(),
 });
 
 export type UpdatePostType = z.infer<typeof updatePostInput>;
