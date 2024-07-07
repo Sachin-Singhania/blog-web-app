@@ -6,9 +6,17 @@ import { BACKEND_URL } from '../config';
 import { Loading } from '../Components/Auth';
 import { useCategories } from '../hooks';
 import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 const New = () => {
+  const { user } = useSelector(
+    (state: { userReducer: any }) => state.userReducer
+  );
   const navigate = useNavigate();
+  if (!user) {
+    toast.error("You Are Not Logged In Returing To Home Page");
+    navigate("/")
+  }
   const { categories } = useCategories();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -61,6 +69,7 @@ const New = () => {
       }
     } catch (error) {
       toast.error('Error creating blog post:');
+      navigate("/");
       return {message:"Error creating blog post:"};
     }
     setLoading(false);
