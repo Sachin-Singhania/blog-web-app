@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import JoditEditor from 'jodit-react';
@@ -13,10 +13,14 @@ const New = () => {
     (state: { userReducer: any }) => state.userReducer
   );
   const navigate = useNavigate();
-  if (!user) {
-    toast.error("You Are Not Logged In Returing To Home Page");
-    navigate("/")
-  }
+  useEffect(() => {
+    if (!user) {
+      toast.error("You Are Not Logged In Returing To Home Page");
+      navigate("/")
+    }
+  }, [user])
+  
+ 
   const { categories } = useCategories();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');

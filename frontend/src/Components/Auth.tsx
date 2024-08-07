@@ -33,7 +33,6 @@ const Auth = ({ type }: { type: "signin" | "signup" }) => {
         localStorage.setItem("jwt", jwt);
         dispatch(userexist(userid));
         navigate("/");
-        window.location.reload();
         toast.success("You're Welcome");
       }
     } catch (error) {

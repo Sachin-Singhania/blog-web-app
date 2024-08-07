@@ -3,14 +3,23 @@ import weblogs from "./../assets/weblog.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userexist, usernotexist } from "../redux/reducer/userreducer"; // Assuming you have a usernotexist action
 
 export const Appbar = () => {
   const dispatch = useDispatch();
   const [loggedin, setLoggedin] = useState(false);
   const token = localStorage.getItem("jwt");
-
+  const { user } = useSelector(
+    (state: { userReducer: any }) => state.userReducer
+  );
+  useEffect(() => {
+    if (user) {
+      setLoggedin(true);
+    } else {
+      setLoggedin(false);
+    }
+  }, [user]);
   useEffect(() => {
     axios.get(`${BACKEND_URL}/api/v1/user/auth-status`, {
       headers: {
